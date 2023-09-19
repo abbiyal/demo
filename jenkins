@@ -7,14 +7,14 @@ pipeline {
                     echo "Building the project"
                     sh "mvn clean install"
                     echo "Publishing to aws"
-                    sh "aws s3api put-object --bucket demojars --key demojartest --body '/home/ubuntu/workspace/Test/target/demo.jar'"
+                    sh "aws s3api put-object --bucket demojars --key demojartest --body '/home/ubuntu/workspace/Test/target/demo.war'"
                 }
             }
             stage("deploy"){
                 agent {node {label "test_server"}}
                 steps{
                     echo "Pulling aws jar and deploying it in tomcat"
-                    sh "aws s3api get-object --bucket demojars --key demojartest /home/ubuntu/tomcat/webapps/demojartest.jar"
+                    sh "aws s3api get-object --bucket demojars --key demojartest /home/ubuntu/tomcat/webapps/demojartest.war"
                 }
             }
         }
