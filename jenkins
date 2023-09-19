@@ -7,7 +7,7 @@ pipeline {
                     echo "Building the project"
                     sh "mvn clean install"
                     echo "Publishing to aws"
-                    sh "aws s3api put-object --bucket demojars --key demojartest --body '/home/ubuntu/workspace/testpublish/target/demo.jar'"
+                    sh "aws s3api put-object --bucket demojars --key demojartest --body '/home/ubuntu/workspace/Test/target/demo.jar'"
                 }
             }
             stage("deploy"){
