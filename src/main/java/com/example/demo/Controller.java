@@ -8,6 +8,6 @@ public class Controller {
 
     @GetMapping("/")
     public String example(){
-        return "<p1><b>HELLO WORLDSSSS !!!!!!!!<b></p1>";
+        return "<p1><b>HELLO WORLDSSS !!!!!!!!<b></p1>";
     }
 }
