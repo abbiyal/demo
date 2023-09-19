@@ -1,0 +1,20 @@
+pipeline {
+        stages {
+            stage("build"){
+                agent {node { label "build_server"}}
+                steps{
+                    echo "Building the project"
+                    sh "mvn clean install"
+                    echo "Publishing to aws"
+                    sh "aws s3api put-object --bucket demojars --key demojartest --body '/home/ubuntu/workspace/testpublish/target/demo.jar'"
+                }
+            }
+            stage("deploy"){
+                agent {node {label "test_server"}}
+                steps{
+                    echo "Pulling aws jar and deploying it in tomcat"
+                    sh "aws s3api get-object --bucket demojars --key demojartest /home/ubuntu/tomcat/webapps/demojartest.jar"
+                }
+            }
+        }
+}
