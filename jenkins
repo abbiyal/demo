@@ -14,7 +14,7 @@ pipeline {
                 agent {node {label "prod_server"}}
                 steps{
                     echo "Pulling aws jar and deploying it in tomcat"
-                    sh "aws s3api get-object --bucket demojars --key demojarprod /home/ubuntu/tomcat/webapps/demojartest.war"
+                    sh "aws s3api get-object --bucket demojars --key demojarprod /home/ubuntu/tomcat/webapps/demojarprod.war"
                 }
             }
         }
